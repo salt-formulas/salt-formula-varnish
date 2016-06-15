@@ -1,0 +1,8 @@
+name: varnish
+os: Debian, RedHat
+os_family: Debian, RedHat
+version: 201606
+release: 1
+summary: varnish salt formula
+description: Install and configure varnish system.
+top_level_dir: varnish
