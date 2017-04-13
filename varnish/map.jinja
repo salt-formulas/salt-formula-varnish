@@ -1,14 +1,24 @@
-
-{%- load_yaml as base_defaults %}
-Debian:
-  pkgs:
-  - varnish
-  repo:
-    components:
-    - 'varnish-4.0'
-RedHat:
-  pkgs:
-  - varnish
-{%- endload %}
-
-{%- set server = salt['grains.filter_by'](base_defaults, merge=salt['pillar.get']('varnish:server')) %}
+{% set server = salt['grains.filter_by']({
+    'Debian': {
+        'pkgs': ['varnish'],
+        'repo': {
+          'components': 'varnish-4.1',
+        },
+    },
+    'RedHat': {
+        'pkgs': ['varnish'],
+    },
+}, merge=salt['grains.filter_by']({
+    'xenial': {
+        'pkgs': ['varnish'],
+        'repo': {
+          'components': 'varnish-4.1',
+        },
+    },
+    'trusty': {
+        'pkgs': ['varnish'],
+        'repo': {
+          'components': 'varnish-4.0',
+        },
+    },
+}, grain='oscodename', merge=salt['pillar.get']('varnish:server'))) %}
