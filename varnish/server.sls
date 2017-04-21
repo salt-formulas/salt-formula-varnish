@@ -3,16 +3,7 @@
 {%- if server.enabled %}
 
 {# just now #}
-{% if salt['grains.get']('os_family') == 'Debian' -%}
-varnish_repo:
-  pkgrepo.managed:
-    - name: deb http://repo.varnish-cache.org/{{ salt['grains.get']('os')|lower }}/ {{ salt['grains.get']('oscodename')}} {{ server.repo.components | join(' ') }}
-    - file: /etc/apt/sources.list.d/varnish.list
-    - keyid: C4DEFFEB
-    - keyserver: keyserver.ubuntu.com
-    - require_in:
-      - pkg: varnish_pkg
-{% elif salt['grains.get']('os_family') == 'RedHat' -%}
+{%- if salt['grains.get']('os_family') == 'RedHat' -%}
   {% for component in server.repo.components %}
 varnish_repo_{{ component }}:
   pkgrepo.managed:

@@ -28,7 +28,7 @@ Single varnish service
                 host: localhost
                 port: 80
 
-And Supervisor like this::
+And Supervisor like this:: yaml
 
     supervisor:
       server:
@@ -39,7 +39,7 @@ And Supervisor like this::
 
 Note: This formulas runs varnish processes under supervisor instead of init script.
 
-Using nginx type::
+Using nginx type:: yaml
 
     nginx:
       server:
