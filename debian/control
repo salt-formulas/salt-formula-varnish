@@ -10,6 +10,6 @@ Vcs-Git: https://github.com/tcpcloud/salt-formula-varnish.git
 
 Package: salt-formula-varnish
 Architecture: all
-Depends: ${misc:Depends}, salt-master, reclass
+Depends: ${misc:Depends}
 Description: varnish salt formula
  Install and configure varnish system.
